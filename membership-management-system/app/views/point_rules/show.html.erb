@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @point_rule.name %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @point_rule.score %>
+</p>
+
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_point_rule_path(@point_rule) %></p>
+<p class="btn btn-default" role="button"><%= link_to 'Back', point_rules_path %></p>

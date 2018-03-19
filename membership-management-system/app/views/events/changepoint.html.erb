@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+<h1>Changing Points</h1>
+<br>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Uin:</strong>
+  <%= @user.uin %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @user.tel %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Membership:</strong>
+  <%= @user.membership %>
+</p>
+
+<p>
+  <strong>Shirt:</strong>
+  <%= @user.shirt %>
+</p>
+
+<p>
+  <strong>Classification:</strong>
+  <%= @user.classification %>
+</p>
+
+<p>
+  <strong>Dynasty:</strong>
+  <%= @user.dynasty %>
+</p>
+
+<p>
+  <strong>Current Points:</strong>
+  <%= @user.points %>
+</p>
+
+<br>
+<div >
+  <div >
+    <%= form_for(@user, :url => {:controller => "events", :action => "changeexecute"}) do |f| %>
+    <p>
+      <%= "You can enter the points you want to change on the user. " %>
+    </p>
+    <p>
+      <%= "For example, positive number to increase the user's points; negative points to decrease the user's points." %>
+     </p>
+ 
+      <%= label_tag(:points, "Points") %>
+      <%= f.text_field :points %>
+      
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<br>
+<% if @eves %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', event_path(@eves) %></p>
+<% else %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', users_path %></p>
+<% end %>

@@ -1,0 +1,93 @@
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @event.year %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @event.semester %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @event.category %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.datetime %>
+</p>
+
+<strong>Description:</strong>
+<pre>
+  <%= @event.description %>
+</pre>
+
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_event_path(@event, :in => :in) %></p>
+
+<br>
+<br>
+<br>
+<div >
+  <div >
+    <%= form_for(:user, :url => {:controller => "events", :action => "checkin"}) do |f| %> 
+     <p>
+      <%= "You can use this to add additional users to the event" %>
+     </p>
+      <%= label_tag(:uin, "UIN") %>
+      <%= f.text_field :uin %>
+      
+      <%= f.submit "Check In", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<% if @event.users.nil? %>
+<% else %>
+<h2 class="sub-header">Detail</h2>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Uin</th>
+      <th>Tel</th>
+      <th>Email</th>
+      <th>Membership</th>
+      <th>Shirt</th>
+      <th>Classification</th>
+      <th>Dynasty</th>
+      <th>Points</th>
+      <th colspan="4"  style="text-align:center;">Operation</th>
+    </tr> 
+  </thead>
+
+  <tbody>
+    <% @eventusers.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.uin %></td>
+        <td><%= user.tel %></td>
+        <td><%= user.email %></td>
+        <td><%= user.membership %></td>
+        <td><%= user.shirt %></td>
+        <td><%= user.classification %></td>
+        <td><%= user.dynasty %></td>
+        <td><%= user.points %></td>
+        <td><%= link_to 'Show', user_path(user,:checkin => :checkin,:eventid => @event.id) %></td>
+        <td><%= link_to 'ChgPts', changepoint_event_path(user) %></td>
+        <td><%= link_to 'Remove',user_path(user,:remove => :remove,:eventid => @event.id), data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>
+      <%= will_paginate @eventusers %>
+<% end %>
+<br>
+<p class="btn btn-default" role="button"><%= link_to 'Back', events_path %></p>
+

@@ -1,0 +1,24 @@
+<h1>New Admin</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@admin) do |f| %>
+      <%= render 'adminshared/error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :uin %>
+      <%= f.text_field :uin, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Password Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <br/>
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <p class="btn btn-default btn-primary" role="button"><%= link_to 'Back', admins_path %></p>
+    <% end %>
+  </div>
+</div>

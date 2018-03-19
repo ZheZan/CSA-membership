@@ -1,0 +1,20 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.jumbotron {
+    background-image: image-url('cbg.jpg');
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+    background-image: image-url('cbg.jpg');
+       color:white;
+   
+}
+
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+    //   background-image: url('tbg.jpg');
+    //   color:white;
+   
+}

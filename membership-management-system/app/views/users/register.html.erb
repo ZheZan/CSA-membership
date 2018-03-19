@@ -1,0 +1,53 @@
+<html>
+  <head>
+      <style>
+           fieldset {
+           border: 2px solid grey;
+           width: 1140px;          
+           }
+    </style>
+  </head>
+  
+
+<body>
+<h1>Register Events</h1>
+<br>
+<br>
+
+<fieldset>
+<h2 class="sub-header">Detail</h2>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Semester</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th colspan="2"  style="text-align:center;">Operation</th>
+    </tr>
+</thead>
+
+
+<tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.year %></td>
+        <td><%= event.semester %></td>
+        <td><%= event.category %></td>
+        <td><%= event.datetime %></td>
+        <td><%= link_to 'Show', eventinfo_user_path(event) %></td>
+        <td><%= link_to 'Register' , {:action =>"checkin", :number=> event.id}, data: { confirm: 'Are you sure to register?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    <%= will_paginate @events %>
+</fieldset>
+
+<br>
+<p class="btn btn-default" role="button"><%= link_to "Back", user_path(@user) %></p>
+
+

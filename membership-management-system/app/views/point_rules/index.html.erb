@@ -1,0 +1,44 @@
+<html>
+  <head>
+      <style>
+           fieldset {
+           border: 2px solid grey;
+           width: 1140px;          
+           }
+    </style>
+  </head>
+  
+
+<body>
+<p id="notice"><%= notice %></p>
+<fieldset>
+<h1>Listing Point Rules</h1>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Score</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @point_rules.each do |point_rule| %>
+      <tr>
+        <td><%= point_rule.name %></td>
+        <td><%= point_rule.score %></td>
+        <td><%= link_to 'Show', point_rule %></td>
+        <td><%= link_to 'Edit', edit_point_rule_path(point_rule) %></td>
+        <td><%= link_to 'Destroy', point_rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</fieldset>
+<br>
+
+
+
+<p class="btn btn-default" role="button"><%= link_to 'New Point Rule', new_point_rule_path %></p>
+<p class="btn btn-default" role="button"><%= link_to "Back to Dashborad", static_pages_adminhome_path %></p>

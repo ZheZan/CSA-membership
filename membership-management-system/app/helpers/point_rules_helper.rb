@@ -1,0 +1,2 @@
+module PointRulesHelper
+end

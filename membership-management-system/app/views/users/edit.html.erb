@@ -1,0 +1,14 @@
+<h1>Editing User</h1>
+
+<%= render 'form' %>
+
+<p class="btn btn-default" role="button"><%= link_to 'Show', @user %></p>
+<% if params[:checkin] %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', event_path(@event) %></p>
+<% elsif params[:check] %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', user_path(@user, :check => :check) %></p>
+<% elsif params[:admin] %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', users_path %></p>
+<% else %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', user_path(@user) %></p>
+<% end %>

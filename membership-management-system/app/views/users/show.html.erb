@@ -1,0 +1,141 @@
+<p id="notice"><%= notice %></p>
+<h1>Profile</h1>
+
+<p>
+  <strong>Uin:</strong>
+  <%= @user.uin %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @user.tel %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Membership:</strong>
+  <%= @user.membership %>
+</p>
+
+<p>
+  <strong>Shirt:</strong>
+  <%= @user.shirt %>
+</p>
+
+<p>
+  <strong>Classification:</strong>
+  <%= @user.classification %>
+</p>
+
+<p>
+  <strong>Dynasty:</strong>
+  <%= @user.dynasty %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @user.points %>
+</p>
+<br>
+
+<% if params[:checkin] %>
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_user_path(@user, :checkin =>:checkin, :eventid => @event.id) %></p>
+<h3 class="sub-header">Event Attended</h3>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Semester</th>
+      <th>Category</th>
+      <th>Points</th>
+      <th>TimeStamp</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @userevents.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.year %></td>
+        <td><%= event.semester %></td>
+        <td><%= event.category %></td>
+        <td><%= "+" %><%= @point[event.id] %></td>
+        <td><%= event.datetime %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @userevents %>
+<br>
+<p class="btn btn-default" role="button"><%= link_to 'Back', event_path(@event) %></p>
+
+<% elsif params[:check] %>
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_user_path(@user,:check =>:check) %></p>
+<h3 class="sub-header">Event Attended</h3>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Semester</th>
+      <th>Category</th>
+      <th>Points</th>
+      <th>TimeStamp</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @userevents.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.year %></td>
+        <td><%= event.semester %></td>
+        <td><%= event.category %></td>
+        <td><%= "+" %><%= @point[event.id] %></td>
+        <td><%= event.datetime %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @userevents %>
+<br>
+<p class="btn btn-default" role="button"><%= link_to 'Back', users_path %></p>
+
+<% else %>
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_user_path(@user) %></p>
+<h3 class="sub-header">Event Management</h3>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= 'Look at events you have registered :' %></td>
+        <td><p class="btn btn-default" role="button"><%= link_to 'Show events attended', showevent_user_path(@user) %></td>
+      </tr>
+      <tr>
+        <td><%= 'Register for new events :' %></td>
+        <td><p class="btn btn-default" role="button"><%= link_to 'Register now!', register_user_path(@user) %></td>
+      </tr>
+  </tbody>
+</table>
+<p class="btn btn-default" role="button"><%= link_to 'Back', root_path %></p>
+<p class="btn btn-default" role="button"><%= link_to "Log out", static_pages_logout_path, method: "delete" %></p>
+<% end %>
+
+
+
+

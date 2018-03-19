@@ -1,0 +1,10 @@
+<h1>Editing Event</h1>
+
+<%= render 'form' %>
+
+<p class="btn btn-default" role="button"><%= link_to 'Show', @event %></p>
+<% if params[:in] %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', event_path(@event) %></p>
+<% else %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', events_path %></p>
+<% end %>

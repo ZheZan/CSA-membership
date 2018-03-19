@@ -1,0 +1,100 @@
+<html>
+  <head>
+      <style>
+           fieldset {
+           border: 2px solid grey;
+           width: 1140px;   
+           padding: 1em;
+           }
+    </style>
+  </head>
+  
+  
+<body>
+<h1>Listing Users</h1>
+<form  method="get" id="userform">
+<br>
+<br>
+<fieldset>
+<legend>Choose groups you want:</legend>
+<label for="membership">Membership:</label>
+<select name="membership" form="userform" id = "test">
+  <option></option>
+    <% @membershiplist.each_value do |membership| %>
+         <option value="<%= membership %>"><%= membership %></option>
+    <% end %>
+</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label for="classification">Classification:</label>
+<select name=classification[] form="userform" multiple="multiple">
+  <option>Cmd for Multi-Choice</option>
+   <% @classificationlist.each_value do |classification| %>
+         <option value="<%= classification %>"><%= classification %></option>
+    <% end %>
+</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label for="dynasty">Dynasty:</label>
+<select name=dynasty[] form="userform" multiple="multiple">
+  <option>Cmd for Multi-Choice</option>
+   <% @dynastylist.each_value do |dynasty| %>
+         <option value="<%= dynasty %>"><%= dynasty %></option>
+    <% end %>
+</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input name="search" type="Submit" value="Search">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input name="reset" type="Submit" value="Reset">
+</fieldset>
+</form>
+<br>
+<br>
+<br>
+
+<fieldset>
+<h2 class="sub-header">Detail</h2>
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+    <tr> 
+      <th><%= link_to 'Name', users_path(:sortby=>"name",:classification=>@classification, :dynasty=>@dynasty,:membership=>@membership,:search=>@search)%></th>
+      <th>Uin</th>
+      <th>Tel</th>
+      <th>Email</th>
+      <th>Membership</th>
+      <th>Shirt</th>
+      <th>Classification</th>
+      <th><%= link_to 'Dynasty', users_path(:sortby=>"dynasty",:classification=>@classification,:dynasty=>@dynasty,:membership=>@membership,:search=>@search)%></th>
+      <th><%= link_to 'Points', users_path(:sortby=>"points",:classification=>@classification,:dynasty=>@dynasty,:membership=>@membership,:search=>@search)%></th>
+      <th colspan="4"  style="text-align:center;">Operation</th>
+    </tr>
+</thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.uin %></td>
+        <td><%= user.tel %></td>
+        <td><%= user.email %></td>
+        <td><%= user.membership %></td>
+        <td><%= user.shirt %></td>
+        <td><%= user.classification %></td>
+        <td><%= user.dynasty %></td>
+        <td><%= user.points %></td>
+        <td><%= link_to 'Show', user_path(user,:check => :check) %></td>
+        <td><%= link_to 'Edit', edit_user_path(user, :admin=>:admin) %></td>
+        <td><%= link_to 'ChgPts', changepoint_event_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+     <%= will_paginate @users %>
+</fieldset>
+<br>
+
+<p class="btn btn-default" role="button"><%= link_to 'New User', new_user_path %></p>
+<p class="btn btn-default" role="button"><%= link_to "Back to Dashborad", static_pages_adminhome_path %></p>
